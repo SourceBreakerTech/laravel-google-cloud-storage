@@ -92,12 +92,9 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
             ]);
         }
 
-        if (! is_array($keyFile)) {
-            $keyFile = [];
-        }
         return new StorageClient([
             'projectId' => $config['project_id'],
-            'keyFile' => array_merge(["project_id" => $config['project_id']], $keyFile)
+            'keyFile' => is_array($keyFile) ? $keyFile : [],
         ]);
     }
 
